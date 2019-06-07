@@ -26,27 +26,22 @@ public class LoginServlet extends HttpServlet {
  
     // Show Login page.
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
- 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         // Forward to /WEB-INF/views/loginView.jsp
         // (Users can not access directly into JSP pages placed in WEB-INF)
-        RequestDispatcher dispatcher //
-                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
- 
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
         dispatcher.forward(request, response);
- 
     }
  
     // When the user enters userName & password, and click Submit.
     // This method will be executed.
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
-        String rememberMeStr = request.getParameter("rememberMe");
-        boolean remember = "Y".equals(rememberMeStr);
+    //    String rememberMeStr = request.getParameter("rememberMe");
+    //    boolean remember = "Y".equals(rememberMeStr);
  
         UserAccount user = null;
         boolean hasError = false;
@@ -82,18 +77,17 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("user", user);
  
             // Forward to /WEB-INF/views/login.jsp
-            RequestDispatcher dispatcher //
-                    = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
- 
+            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
             dispatcher.forward(request, response);
         }
+        
         // If no error
         // Store user information in Session
         // And redirect to userInfo page.
         else {
             HttpSession session = request.getSession();
             MyUtils.storeLoginedUser(session, user);
- 
+/* 
             // If user checked "Remember me".
             if (remember) {
                 MyUtils.storeUserCookie(response, user);
@@ -102,7 +96,7 @@ public class LoginServlet extends HttpServlet {
             else {
                 MyUtils.deleteUserCookie(response);
             }
- 
+*/ 
             // Redirect to userInfo page.
             response.sendRedirect(request.getContextPath() + "/userInfo");
         }
