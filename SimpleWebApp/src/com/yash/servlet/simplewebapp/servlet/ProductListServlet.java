@@ -25,15 +25,15 @@ public class ProductListServlet  extends HttpServlet {
     }
  
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        Connection conn = MyUtils.getStoredConnection(request);
- 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+        
+    	Connection conn = MyUtils.getStoredConnection(request);
         String errorString = null;
         List<Product> list = null;
         try {
             list = DBUtils.queryProduct(conn);
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) {
             e.printStackTrace();
             errorString = e.getMessage();
         }
@@ -42,14 +42,12 @@ public class ProductListServlet  extends HttpServlet {
         request.setAttribute("productList", list);
          
         // Forward to /WEB-INF/views/productListView.jsp
-        RequestDispatcher dispatcher = request.getServletContext()
-                .getRequestDispatcher("/WEB-INF/views/productListView.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/productListView.jsp");
         dispatcher.forward(request, response);
     }
  
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
  
