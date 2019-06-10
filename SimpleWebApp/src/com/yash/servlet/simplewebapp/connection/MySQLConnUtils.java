@@ -7,7 +7,8 @@ import java.sql.SQLException;
 public class MySQLConnUtils {
   
  public static Connection getMySQLConnection() throws ClassNotFoundException, SQLException {
-   
+
+	 System.out.println("MySQLConnUtils, getMySQLConnection() : return getMySQLConnection(hostName, dbName, userName, password);  ");
 	 // Note: Change the connection parameters accordingly.
      String hostName = "localhost";
      String dbName = "o7planning.org";
@@ -17,7 +18,7 @@ public class MySQLConnUtils {
  }
   
  public static Connection getMySQLConnection(String hostName, String dbName, String userName, String password) throws SQLException, ClassNotFoundException {
-  System.out.println("  MySQLConnUtils, Connection getMySQLConnection : ");
+  System.out.println("MySQLConnUtils, Connection getMySQLConnection :      return conn;   ");
 	 
   	 Class.forName("com.mysql.jdbc.Driver");
      // URL Connection for MySQL:

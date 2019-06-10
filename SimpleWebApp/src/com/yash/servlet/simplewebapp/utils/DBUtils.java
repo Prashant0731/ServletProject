@@ -11,11 +11,12 @@ import com.yash.servlet.simplewebapp.beans.Product;
 import com.yash.servlet.simplewebapp.beans.UserAccount;
 
 public class DBUtils {
-	 
+	
+	//Find User
     public static UserAccount findUser(Connection conn, String userName, String password) throws SQLException {
- 
-        String sql = "Select a.User_Name, a.Password, a.Gender from User_Account a where a.User_Name = ? and a.password= ?";
-     
+        
+    	String sql = "Select a.User_Name, a.Password, a.Gender from User_Account a where a.User_Name = ? and a.password= ?";
+       
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, userName);
         pstm.setString(2, password);
@@ -32,6 +33,7 @@ public class DBUtils {
         return null;
     }
  
+    //find user
     public static UserAccount findUser(Connection conn, String userName) throws SQLException {
  
         String sql = "Select a.User_Name, a.Password, a.Gender from User_Account a where a.User_Name = ? ";
@@ -52,6 +54,7 @@ public class DBUtils {
         return null;
     }
  
+    
     public static List<Product> queryProduct(Connection conn) throws SQLException {
         String sql = "Select a.Code, a.Name, a.Price from Product a ";
  
@@ -72,6 +75,7 @@ public class DBUtils {
         return list;
     }
  
+    //find prouct
     public static Product findProduct(Connection conn, String code) throws SQLException {
         String sql = "Select a.Code, a.Name, a.Price from Product a where a.Code=?";
  
@@ -89,6 +93,7 @@ public class DBUtils {
         return null;
     }
  
+    //update product
     public static void updateProduct(Connection conn, Product product) throws SQLException {
         String sql = "Update Product set Name =?, Price=? where Code=? ";
  
@@ -101,6 +106,7 @@ public class DBUtils {
         pstm.executeUpdate();
     }
  
+    //insert into product
     public static void insertProduct(Connection conn, Product product) throws SQLException {
         String sql = "Insert into Product(Code, Name,Price) values (?,?,?)";
  
@@ -113,6 +119,7 @@ public class DBUtils {
         pstm.executeUpdate();
     }
  
+    //delete product
     public static void deleteProduct(Connection conn, String code) throws SQLException {
         String sql = "Delete From Product where Code= ?";
 

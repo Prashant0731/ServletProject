@@ -38,7 +38,7 @@ public class JDBCFilter implements Filter {
  
     // Check the target of the request is a servlet?
     private boolean needJDBC(HttpServletRequest request) {
-        System.out.println(" JDBCFilter, needJDBC() :");
+        System.out.println("JDBCFilter, needJDBC() :");
      
         // Servlet Url-pattern: /spath/*
         
@@ -84,6 +84,7 @@ public class JDBCFilter implements Filter {
             try {
                 // Create a Connection.
                 conn = ConnectionUtils.getConnection();
+                
                 // Set outo commit to false.
                 conn.setAutoCommit(false);
  

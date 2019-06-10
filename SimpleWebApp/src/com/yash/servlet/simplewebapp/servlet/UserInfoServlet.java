@@ -23,10 +23,10 @@ public class UserInfoServlet extends HttpServlet {
  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
+       
+    	HttpSession session = request.getSession();
         // Check User has logged on
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
- 
         // Not logged in
         if (loginedUser == null) {
             // Redirect to login page.
