@@ -1,4 +1,4 @@
-package com.yash.servlet.simplewebapp.servlet;
+ package com.yash.servlet.simplewebapp.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
